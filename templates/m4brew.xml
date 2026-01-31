@@ -2,31 +2,57 @@
 <Container version="2">
   <Name>m4brew</Name>
   <Repository>matxby/m4brew:latest</Repository>
-  <Network>matt-net</Network>
+
+  <!-- CA-safe default: don't assume a custom network exists -->
+  <Network>bridge</Network>
   <MyIP/>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
+
   <Support>https://github.com/MATXBY/m4brew</Support>
   <Project>https://github.com/MATXBY/m4brew</Project>
   <Overview>m4brew - Audiobook source manager and M4B converter.</Overview>
   <Category>MediaApp:Audio</Category>
+
   <WebUI>http://[IP]:[PORT:8080]/</WebUI>
   <Icon>https://raw.githubusercontent.com/MATXBY/m4brew/master/app/static/images/m4brew-logo.png</Icon>
+
   <Registry>https://hub.docker.com/r/matxby/m4brew</Registry>
   <ReadMe>https://github.com/MATXBY/m4brew</ReadMe>
   <Changes>https://github.com/MATXBY/m4brew/releases</Changes>
 
-  <Config Name="WebUI Port" Target="8080" Default="8585" Mode="tcp" Description="Host port for the web UI" Type="Port" Display="always" Required="true" Mask="false"/>
-  <Config Name="Timezone" Target="TZ" Default="Europe/London" Mode="" Description="Timezone" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="PUID" Target="PUID" Default="1026" Mode="" Description="User ID" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="Docker Network (for child runs)" Target="DOCKER_NETWORK" Default="matt-net" Mode="" Description="Network name used by m4brew when it launches helper containers" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <!-- WebUI port -->
+  <Config Name="WebUI Port" Target="8080" Default="8585" Mode="tcp"
+          Description="Host port for the web UI" Type="Port" Display="always" Required="true" Mask="false"/>
 
-  <Config Name="Config" Target="/config" Default="/mnt/cache/appdata/m4brew/config" Mode="rw" Description="App config folder" Type="Path" Display="always" Required="true" Mask="false"/>
-  <Config Name="Docker Socket" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Required to launch helper containers" Type="Path" Display="always" Required="true" Mask="false"/>
+  <!-- Common variables (CA-friendly defaults) -->
+  <Config Name="Timezone" Target="TZ" Default="UTC" Mode=""
+          Description="Timezone (e.g. Europe/London)" Type="Variable" Display="always" Required="true" Mask="false"/>
 
-  <!-- Audiobook roots (container paths can include spaces; you’ve proven it works) -->
-  <Config Name="DSM Main" Target="/DSM Main" Default="/mnt/remotes/192.168.4.4_media/Audiobooks" Mode="rw,slave" Description="Audiobooks root (remote)" Type="Path" Display="always" Required="false" Mask="false"/>
-  <Config Name="Chaptarr" Target="/Chaptarr" Default="/mnt/cache/media/Chaptarr/Audiobooks" Mode="rw,slave" Description="Audiobooks root (local)" Type="Path" Display="always" Required="false" Mask="false"/>
-  <Config Name="Test Folders" Target="/Test Folders" Default="/mnt/cache/media/Audiobooks" Mode="rw,slave" Description="Audiobooks root (test)" Type="Path" Display="always" Required="false" Mask="false"/>
+  <Config Name="PUID" Target="PUID" Default="99" Mode=""
+          Description="User ID (Unraid default: 99)" Type="Variable" Display="always" Required="true" Mask="false"/>
+
+  <Config Name="PGID" Target="PGID" Default="100" Mode=""
+          Description="Group ID (Unraid default: 100)" Type="Variable" Display="always" Required="true" Mask="false"/>
+
+  <Config Name="Docker Network (for helper containers)" Target="DOCKER_NETWORK" Default="bridge" Mode=""
+          Description="Network name used by m4brew when it launches helper containers (usually bridge)"
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <!-- Required paths -->
+  <Config Name="Appdata Config" Target="/config" Default="/mnt/user/appdata/m4brew"
+          Mode="rw" Description="App config folder" Type="Path" Display="always" Required="true" Mask="false"/>
+
+  <Config Name="Docker Socket" Target="/var/run/docker.sock" Default="/var/run/docker.sock"
+          Mode="rw" Description="Required to launch helper containers" Type="Path" Display="always" Required="true" Mask="false"/>
+
+  <!-- Optional audiobook roots (generic + portable) -->
+  <Config Name="Audiobooks 1" Target="/audiobooks1" Default=""
+          Mode="rw,slave" Description="Audiobooks root #1 (set host path)" Type="Path" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Audiobooks 2" Target="/audiobooks2" Default=""
+          Mode="rw,slave" Description="Audiobooks root #2 (set host path)" Type="Path" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Audiobooks 3" Target="/audiobooks3" Default=""
+          Mode="rw,slave" Description="Audiobooks root #3 (set host path)" Type="Path" Display="always" Required="false" Mask="false"/>
 </Container>
