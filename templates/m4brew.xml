@@ -48,11 +48,11 @@
 
   <!-- Optional audiobook roots (generic + portable) -->
   <Config Name="Audiobooks 1" Target="/audiobooks1" Default=""
-          Mode="rw,slave" Description="Audiobooks root #1 (set host path)" Type="Path" Display="always" Required="false" Mask="false"/>
+          Mode="rw,slave" Description="Mapped folder #1 (set host path). Will appear in the UI dropdown." Type="Path" Display="always" Required="false" Mask="false"/>
 
   <Config Name="Audiobooks 2" Target="/audiobooks2" Default=""
-          Mode="rw,slave" Description="Audiobooks root #2 (set host path)" Type="Path" Display="always" Required="false" Mask="false"/>
+          Mode="rw,slave" Description="Mapped folder #2 (set host path). Will appear in the UI dropdown." Type="Path" Display="always" Required="false" Mask="false"/>
 
   <Config Name="Audiobooks 3" Target="/audiobooks3" Default=""
-          Mode="rw,slave" Description="Audiobooks root #3 (set host path)" Type="Path" Display="always" Required="false" Mask="false"/>
+          Mode="rw,slave" Description="Mapped folder #3 (set host path). Will appear in the UI dropdown." Type="Path" Display="always" Required="false" Mask="false"/>
 </Container>
