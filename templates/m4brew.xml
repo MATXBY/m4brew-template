@@ -15,7 +15,7 @@
   <Category>MediaApp:Audio</Category>
 
   <WebUI>http://[IP]:[PORT:8080]/</WebUI>
-  <Icon>https://raw.githubusercontent.com/MATXBY/m4brew/master/app/static/images/m4brew-logo.png</Icon>
+  <Icon>https://raw.githubusercontent.com/MATXBY/m4brew/main/app/static/images/m4brew-logo.png</Icon>
 
   <Registry>https://hub.docker.com/r/matxby/m4brew</Registry>
   <ReadMe>https://github.com/MATXBY/m4brew</ReadMe>
